@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Quixote Task Subham Panda</title>
+  </head>
+  <body>
+  <h2>Task Subham Panda </h2>
+  <h3>Select a file to upload</h3>
+        <p>
+            <button onclick="myFunction()">My Links</button>
+            <div id="myDIV">
+    <br/><br/>
+    {% for our_user in our_users %}
+    {{ our_user.username}}. {{our_user.last_seen}}<br/>
+    {% endfor %}
+    </div>
+      
+<script>
+document.getElementById("myDIV").style.display = "none";
+function myFunction() {
+  var x = document.getElementById("myDIV");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
+         {% with messages = get_flashed_messages() %}
+           {% if messages %}
+          {% for message in messages %}
+            <div class="alert alert-primary">
+             <strong>{{ message }}</strong>
+           </div>
+          {% endfor %}
+      
+        
+           {% endif %}
+      
+         {% endwith %}
+      
+        </p>
+  <form method="post" action="/upload" enctype="multipart/form-data">
+ <input type="text" name="txtusername" value="" placeholder="Enter your name" required>
+    <dl>
+  <p>
+   <input type="file" name="inputFile" autocomplete="off" required>
+  </p>
+    </dl>
+    <p>
+  <input type="submit" value="Upload">
+ </p>
+
+</form>
+<style>
+.alert-primary {
+    color: #004085;
+    background-color: #cce5ff;
+    border-color: #b8daff;
+}
+.alert {
+    position: relative;
+    padding: .75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+}
+  
+</style>
+    </body>
+</html>
